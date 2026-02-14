@@ -1,12 +1,21 @@
-# 3 Beginner "Vibe Coding" App Ideas (Data + Analytics + Investment)
+# 3 Simple AI + Web App Ideas to Start Vibe Coding
 
-If your goal is to learn by building and keep setup minimal, start with **Streamlit**:
+You said you have limited coding experience and want to learn by examples with minimal setup.
+So these ideas are designed to be:
+- **Local-first** (runs on your laptop)
+- **Simple web UI** (Streamlit)
+- **Relevant to data, analytics, and investing**
+- **Easy to expand into more advanced versions later**
+
+## Minimal setup (once)
 
 ```bash
-pip install streamlit pandas yfinance plotly
+python -m venv .venv
+source .venv/bin/activate   # On Windows: .venv\Scripts\activate
+pip install streamlit pandas plotly yfinance
 ```
 
-Then run apps with:
+Run any app with:
 
 ```bash
 streamlit run app.py
@@ -14,65 +23,97 @@ streamlit run app.py
 
 ---
 
-## 1) Portfolio Snapshot Explainer
+## Idea 1 (Best first): Portfolio Checkup Assistant
 
-**What it does**
-- You type in a few stock tickers and weights (for example: AAPL 40%, MSFT 30%, VOO 30%).
-- The app fetches recent prices.
-- It shows simple charts: portfolio value trend, best/worst performer, allocation pie chart.
-- It generates a plain-English summary like: “This portfolio was mainly driven by X in the last 30 days.”
+### What the app does
+- You enter 3–10 tickers and portfolio weights.
+- App downloads price history.
+- Shows:
+  - Portfolio growth line chart
+  - Drawdown chart (how much it dropped from peaks)
+  - Best/worst contributor table
+- AI-style summary in plain English:
+  - “Your portfolio underperformed mainly because X and Y.”
 
-**Why this is a good first project**
-- Strong overlap with investment and analytics.
-- You learn data loading, data transforms, charting, and simple AI text summarization.
-- You can start small and add features later (benchmark vs S&P 500, risk stats, etc.).
+### Why it is good for beginners
+- Clear input/output.
+- Immediate visual feedback.
+- Teaches core analytics skills: cleaning data, combining time series, charting.
 
-**Minimal tools**
-- Streamlit + pandas + yfinance + plotly.
+### MVP (first version, 60–90 min)
+1. Ticker input box (comma-separated).
+2. Weight input (simple percentages).
+3. Price download with `yfinance`.
+4. One line chart + one short written summary.
 
----
-
-## 2) Earnings Call Sentiment Mini-Dashboard
-
-**What it does**
-- You paste short snippets from earnings call transcripts (or news text).
-- The app classifies each snippet as positive / neutral / negative.
-- It extracts topics (growth, margins, guidance, risk).
-- Dashboard shows sentiment counts and topic trends.
-
-**Why this is a good first project**
-- Very practical analytics workflow: text -> labels -> insights.
-- Great intro to LLM usage without heavy ML training.
-- You can begin with manual pasted text (no complex ingestion setup).
-
-**Minimal tools**
-- Streamlit + pandas + a simple LLM API call (OpenAI-compatible or Snowflake Cortex if available).
+### Nice upgrades later
+- Compare against benchmark (SPY/QQQ).
+- Add rolling volatility.
+- Add “What changed this week?” AI commentary.
 
 ---
 
-## 3) “Explain This Chart” Data Story Assistant
+## Idea 2: Earnings Call Sentiment Tracker
 
-**What it does**
-- You upload a CSV (e.g., monthly returns, KPI metrics, sales by segment).
-- App auto-generates basic charts.
-- You click a chart and the assistant explains what changed, possible drivers, and follow-up questions.
-- Optional: ask “what should I investigate next?”
+### What the app does
+- You paste earnings-call snippets (or management commentary).
+- App labels each snippet as Positive / Neutral / Negative.
+- App extracts simple themes (growth, margin, demand, guidance, risk).
+- Dashboard shows:
+  - Sentiment distribution
+  - Theme counts
+  - Most concerning statements
 
-**Why this is a good first project**
-- Directly matches data/analytics background.
-- Helps learn AI prompting + simple app UX quickly.
-- Useful even outside investment use cases.
+### Why it is good for beginners
+- Great first NLP workflow without model training.
+- You learn table transformations and dashboard views.
+- Useful for investment research routines.
 
-**Minimal tools**
-- Streamlit + pandas + plotly + LLM API.
+### MVP (first version)
+1. Text box with one snippet per line.
+2. Rule-based sentiment (keyword lists).
+3. Bar charts for sentiment + themes.
+
+### AI upgrade later
+- Replace rule-based logic with LLM calls for better classification and explanations.
 
 ---
 
-## Which one should you build first?
+## Idea 3: KPI Anomaly Explainer (CSV Upload)
 
-Start with **#1 Portfolio Snapshot Explainer**.
-- It has clear inputs and outputs.
-- You can ship a useful version in a single session.
-- It teaches the full loop: data fetch -> analytics -> visualization -> AI explanation.
+### What the app does
+- Upload a CSV with date + KPI columns (revenue, CAC, churn, etc.).
+- App auto-detects unusual changes (spikes/drops).
+- App explains anomalies in plain language:
+  - “Revenue dropped 14% vs last month while CAC increased 9%.”
+- App suggests follow-up questions.
 
-If you want, next step I can generate a **complete starter `app.py`** for idea #1 with beginner-friendly comments.
+### Why it is good for beginners
+- Directly aligned with analytics background.
+- No external API required for the first version.
+- Works with your own real datasets.
+
+### MVP (first version)
+1. CSV uploader.
+2. Choose KPI from dropdown.
+3. Show trend chart.
+4. Flag points above/below simple threshold (e.g., z-score).
+
+### Nice upgrades later
+- Segment filters (region/product/channel).
+- Week-over-week and month-over-month decomposition.
+- AI-generated investigation checklist.
+
+---
+
+## What to build first
+
+Start with **Idea 1: Portfolio Checkup Assistant**.
+
+It gives the fastest learning loop:
+1. Get data
+2. Build charts
+3. Add explanation text
+4. Share and iterate
+
+If you want, next I can generate a full **beginner-friendly `app.py`** for Idea 1 with comments on every step.
