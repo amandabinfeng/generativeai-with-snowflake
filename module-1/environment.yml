@@ -1,5 +1,14 @@
 name: app_environment
 channels:
+  - conda-forge
   - snowflake
 dependencies:
+  - python=3.10
   - snowflake-ml-python=*
+  - pandas
+  - plotly
+  - numpy
+  - yfinance
+  - pip
+  - pip:
+      - streamlit
